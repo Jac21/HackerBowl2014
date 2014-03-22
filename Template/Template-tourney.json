@@ -1,0 +1,34 @@
+{
+	"id": null,
+	"host": {
+		"id": null,
+		"name": null,
+		"IGN": null
+	},
+	"info": {
+		"summary": null,
+		"status": null,
+		"game": null,
+		"location": null,
+		"time": null,
+		"type": null,
+		"style": null,
+		"cost": null,
+		"total-pot": null,
+		"current-div": null,
+		"current-size": 0,
+		"max-size": null
+	},
+	"users": {
+		"user1": {
+			"id": null,
+			"name": null,
+			"IGN": null
+		},
+		"user2": {
+			"id": null,
+			"name": null,
+			"IGN": null
+		}
+	}
+}
