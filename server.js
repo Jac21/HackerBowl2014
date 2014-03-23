@@ -85,8 +85,8 @@ http.createServer(function (req, res) {
                                 if (err) throw err;
                                 res.writeHead(200, {'Content-Type': 'text/html'});
                                 console.log('Client called: ' + req.url);
-                                res.end();
                                 menu.build(req, res);
+                                res.end();
                             });
                         } else {
                             filename = Math.floor(Math.random()*10000) + '.json';
