@@ -76,7 +76,7 @@ http.createServer(function (req, res) {
             } else {
                 var POST = qs.parse(queryData);
                 var filename = Math.floor(Math.random()*10000);
-                POST = parseJS(POST, filename);
+                POST = parseJS(POST, filename, res);
                 filename += '.json';
                 if (POST !== undefined) {
                     fs.stat(filename, function(err, stat) {
@@ -107,9 +107,9 @@ http.createServer(function (req, res) {
 
 console.log('Server running at http://127.0.0.1:80/');
 
-function parseJS(data, id) {
-    if (data.length < 3) {
-        update.now(id+'.json', data);
+function parseJS(data, id, res) {
+    if (data.id !== undefined) {
+        update.now(data, res);
     } else {
         var a = {
             "id": id,
@@ -125,8 +125,8 @@ function parseJS(data, id) {
                 "game": data.game,
                 "location": data.location,
                 "time": data.time,
-                "type": data.type,
-                "style": data.style,
+                "type": "1v1",
+                "style": "elminination",
                 "cost": data.cost,
                 "total-pot": null,
                 "currentSplit": null,
