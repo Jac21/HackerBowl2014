@@ -1,6 +1,6 @@
 var fs = require('fs'),
 	parse = require('./parse.js');
-	walkPath = './Tournaments';
+	walkPath = './tournaments';
 module.exports = {
 	build: function(response) 
 	{
@@ -88,12 +88,12 @@ module.exports = {
 	parseData: function() 
 	{
 		return {
-		"title": this.obj['title'],
-		"status": this.obj['status'],
-		 "game": this.obj['game'],
-		"type": this.obj['type'],
-		"current-size": this.obj['current-size'],
-		"time": this.obj['time']
+		"title": this.obj['info']['title'],
+		"status": this.obj['info']['status'],
+		 "game": this.obj['info']['game'],
+		"type": this.obj['info']['type'],
+		"current-size": this.obj['info']['currentsize'],
+		"time": this.obj['info']['time']
 		}
 	},
 	obj: {},
