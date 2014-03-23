@@ -75,7 +75,9 @@ module.exports = {
 		"title": this.obj['title'];
 		"status": this.obj['status'];
 		 "game": this.obj['game'];
-		"type": this.obj['users'];
+		"type": this.obj['type'];
+		"current-size": this.obj['current-size'];
+		"time": this.obj['time'];
 		}
 	},
 	obj: {},
