@@ -6,6 +6,7 @@
 		"IGN": null
 	},
 	"info": {
+		"title": null,
 		"summary": null,
 		"status": null,
 		"game": null,
@@ -17,7 +18,8 @@
 		"total-pot": null,
 		"current-div": null,
 		"current-size": 0,
-		"max-size": null
+		"max-size": null,
+		"rounds": null,
 	},
 	"users": {
 		"user1": {
@@ -30,5 +32,22 @@
 			"name": null,
 			"IGN": null
 		}
-	}
+	},
+	"bracket": {
+        "total-rounds": 3,
+        "rounds": {
+            "round1": [
+                "user1",
+                "user2"
+            ],
+            "round2": [
+                "user3",
+                "user4"
+            ],
+            "round3": [
+                "user2",
+                "user4"
+            ]
+        }
+    }
 }
