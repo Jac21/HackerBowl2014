@@ -73,13 +73,15 @@ parse.build(self.parsed, '/Template/template-tabled.html', 'templatetd', '/html/
 	},
 	parseData: function() 
 	{
+		console.log(this.obj.id)
 		return {
 		"title": this.obj['info']['title'],
 		"status": this.obj['info']['status'],
 		"game": this.obj['info']['game'],
 		"type": this.obj['info']['type'],
 		"currentSize": this.obj['info']['currentSize'],
-		"time": this.obj['info']['time']
+		"time": this.obj['info']['time'],
+		"id": this.obj.id
 		}
 	},
 	obj: {},
