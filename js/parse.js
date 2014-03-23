@@ -1,5 +1,4 @@
 var Mustache = require('mustache'),
-	fs = require('fs'),
 	jsdom = require('jsdom');
 
 module.exports = {
@@ -13,7 +12,10 @@ module.exports = {
 		 	done: function (err, window) {
 		 		var $ = window.jQuery;
 				self.template = $('#'+templateID).html();
-				var output = Mustache.render(self.template, obj);
+				var output = '';
+				for (var i = 0; i < obj.length; ++i) {
+					output += Mustache.render(self.template, obj[i]);
+				}
 				window.close();
 				jsdom.env({  
 					url: 'http://localhost' + html,
@@ -23,14 +25,19 @@ module.exports = {
 					done: function (err, window) {
 						var $ = window.jQuery;
 						$('#'+divID).html(output);
-						self.htmlDocument = '<!DOCTYPE html><html lang="en">' + window.document.documentElement.innerHTML + '</html>';
-						response.write(self.htmlDocument);
-            			response.end();
+						self.htmlDocument = window.document.documentElement.innerHTML;
+						self.send(response);
             			window.close();
 					}
 				});
 			}
 		});
+	},
+	send: function(res) {
+		var footerScript = '<script id="f">document.getElementsByClassName("jsdom")[0].remove();document.getElementById("f").remove();</script>';
+		this.htmlDocument = '<!DOCTYPE html><html lang="en">' + this.htmlDocument + footerScript + '</html>';
+		res.write(this.htmlDocument);
+        res.end();
 	},
 	template: '',
 	htmlDocument: ''
