@@ -2,7 +2,8 @@ var http = require('http'),
     fs = require('fs'),
     qs = require('querystring'),
     bracket = require('./js/bracket.js'),
-    menu = require('./js/menu.js');
+    menu = require('./js/menu.js'),
+    update = require('./js/update.js');
 
 http.createServer(function (req, res) {
     if (req.method === 'GET') {
@@ -55,9 +56,9 @@ http.createServer(function (req, res) {
             console.log('Client called: ' + req.url);
             menu.build(req, res);
         } else {
-            console.log('Failed call: ' + req.url);
+            console.log('Failed call: ' + req.url);     // fail safe
         }
-    } else if (req.method === 'POST') {
+    } else if (req.method === 'POST') {         // POST for JSON
         var queryData = "";
         req.on('data', function(data) {
             queryData += data;
@@ -102,52 +103,43 @@ http.createServer(function (req, res) {
 console.log('Server running at http://127.0.0.1:80/');
 
 function parseJS(data, id) {
-    var a = {
-        "id": id,
-        "host": {
-            "id": 0,
-            "name": null,
-            "IGN": data.IGN
-        },
-        "info": {
-            "title": data.Title,
-            "summary": data.summary,
-            "status": data.status,
-            "game": data.same,
-            "location": data.location,
-            "time": data.time,
-            "type": data.type,
-            "style": data.style,
-            "cost": data.cost,
-            "total-pot": null,
-            "current-split": null,
-            "current-size": 1,
-            "max-size": data.maxSize,
-            "rounds": null,
-        },
-        "users": [
-            {
-            "id": 0,
-            "name": null,
-            "IGN": data.IGN
-            }
-        ],
-        "bracket": {
-            "rounds": {
-                "round1": [
-                    "user1",
-                    "user2"
-                ],
-                "round2": [
-                    "user3",
-                    "user4"
-                ],
-                "round3": [
-                    "user2",
-                    "user4"
-                ]
+    if (data.length < 3) {
+        update.now(id+'.json', data);
+    } else {
+        var a = {
+            "id": id,
+            "host": {
+                "id": 0,
+                "name": data.name,
+                "IGN": data.IGN
+            },
+            "info": {
+                "title": data.Title,
+                "summary": data.summary,
+                "status": data.status,
+                "game": data.same,
+                "location": data.location,
+                "time": data.time,
+                "type": data.type,
+                "style": data.style,
+                "cost": data.cost,
+                "total-pot": null,
+                "currentSplit": null,
+                "currentSize": 1,
+                "maxSize": data.maxSize,
+                "rounds": null,
+            },
+            "users": [
+                {
+                "id": 0,
+                "name": data.name,
+                "IGN": data.IGN
+                }
+            ],
+            "bracket": {
+                "rounds": []
             }
         }
-        
+        a.bracket.rounds.push(users[0]);
     }
 }
