@@ -1,6 +1,5 @@
 var fs = require('fs'),
 	parse = require('./parse.js');
-	myfiles = [];
 	walkPath = './../Tournaments/';
 module.exports = {
 	build: function(response) 
@@ -38,6 +37,8 @@ module.exports = {
 		                    });
 		                } else {
 		                    // do stuff to file here
+		                     obj = JSON.parse(file);
+		                     parsed.push(parseData());
 		                    console.log(file);
 		                    next();
 		                }
@@ -68,13 +69,15 @@ module.exports = {
 		// send parse.build(obj, templateHtml, templateID, html, divID, response)
 
 	},
-	parseData: function() {
-		var title =this.obj['users'];
-		var status =this.parsed['users'];
-		var game =this.parsed['users'];
-		var type =this.parsed['users'];
-		
+	parseData: function() 
+	{
+		return {
+		"title": this.obj['title'];
+		"status": this.obj['status'];
+		 "game": this.obj['game'];
+		"type": this.obj['users'];
+		}
 	},
-	obj: [],
-	parsed: {}
+	obj: {},
+	parsed: []
 }
