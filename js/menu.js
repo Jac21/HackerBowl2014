@@ -1,6 +1,4 @@
-var Mustache = require('mustache'),
-	fs = require('fs'),
-	jsdom = require('jsdom'),
+var fs = require('fs'),
 	parse = require('./js/parse.js');
 
 module.exports = {
@@ -9,7 +7,6 @@ module.exports = {
 		// parse json
 		// send parse.build(obj, templateHtml, templateID, html, divID, response)
 
-		parse.build({"round": 1, "names": "name!"}, "/Template/template-brackets.html", "template-round", "/index.html", "bracket", response);
 		parseData: function() {
 			this.parsed['users'] = this.data['rounds'][round];
 			this.parsed['rounds'] = round;
