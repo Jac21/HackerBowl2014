@@ -40,14 +40,12 @@ module.exports = {
 			else
 				temp2.push("_________________");
 		}
-		if (temp2.length % 2 == 0) {
-			for (var i = 0; i < temp2.length; i+=2) {
-				temp = {
-					"round": i+1,
-					"users": temp2[i] + ' versus ' + temp2[i+1] + '\n'
-				}
-				data.push(temp);
+		for (var i = 0; i < temp2.length-1; i++) {
+			temp = {
+				"round": i+1,
+				"users": temp2[i] + ' versus ' + temp2[i+1] + '\n'
 			}
+			data.push(temp);
 		}
 		return data;
 	}
