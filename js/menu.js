@@ -7,40 +7,27 @@ module.exports = {
 		var self = this;
 		var walk = function (dir, done) 
 		{
-		    fs.readdir(dir, function (error, list) 
+			console.log("HI:D");
+			console.log(dir);
+		    list = fs.readdirSync(dir) 
 		    {
-		        if (error) 
-		        {
-		            return done(error);
-		        }
-		 
+			console.log("("+list+")");
 		        var i = 0;
-		 
+		 	console.log("its in");
 		        (function next () 
 		        {
 		            var file = list[i++];
-		 
 		            if (!file) 
 		            {
 		                return done(null);
 		            }
 		            
 		            file = dir + '/' + file;
-		            
-		            fs.stat(file, function (error, stat) 
-		            {
-		        
-		                if (stat && stat.isDirectory()) 
-		                {
-		                    walk(file, function (error) 
-		                    {
-		                        next();
-		                    });
-		                } else {
+		            console.log("("+file+")");
+			    debugger;
 		                    // do stuff to file here
-					fs.readFile(file, function(err, data) 
-					{
-						if(err) return done(null);
+					console.log("its going to check the file");
+					data = fs.readFileSync(file, 'utf8');
 						try {
 				             		self.obj = JSON.parse(data);
 							 console.log(self.obj);
@@ -51,16 +38,16 @@ module.exports = {
 	 						console.log("well its nt here");
 							return done(null);
 						}
-					       
+					        console.log("+data+");
  						self.parsed.push(self.parseData());
 		                    		console.log(self.parsed);
 		                    		next();
-					});
+					
 		                    
-		                }
-		            });
+		                
+		            
 		        })();
-		    });
+		    }
 		};
 		 
 		 
@@ -72,6 +59,7 @@ module.exports = {
 		{
 		    if (error) 
 		    {
+			console.log("Error y");
 		        throw error;
 		    } 
 		    else 
@@ -82,6 +70,7 @@ module.exports = {
 		    }
 		});
 		// parse json
+		console.log(self.parsed);
 		parse.build(this.parsed, '/Template/template-tabled.html', 'template-td', '/html/template-menu-index.html', 'games', response);
 
 	},
@@ -92,7 +81,7 @@ module.exports = {
 		"status": this.obj['info']['status'],
 		 "game": this.obj['info']['game'],
 		"type": this.obj['info']['type'],
-		"current-size": this.obj['info']['currentsize'],
+		"currentSize": this.obj['info']['currentSize'],
 		"time": this.obj['info']['time']
 		}
 	},
