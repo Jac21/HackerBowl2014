@@ -118,10 +118,10 @@ function parseJS(data, id) {
                 "IGN": data.IGN
             },
             "info": {
-                "title": data.Title,
+                "title": data.title,
                 "summary": data.summary,
                 "status": data.status,
-                "game": data.same,
+                "game": data.game,
                 "location": data.location,
                 "time": data.time,
                 "type": data.type,

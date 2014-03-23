@@ -3,6 +3,11 @@ var Mustache = require('mustache'),
 
 module.exports = {
 	build: function(obj, templateHtml, templateID, html, divID, response) {
+		var obj2 = {};
+		if (obj[obj.length-1].length == 6) {
+			obj2 = obj[obj.length-1];
+			delete obj[obj.length-1];
+		}
 		var self = this;
 		jsdom.env({  
 			url: 'http://localhost' + templateHtml,
@@ -26,7 +31,11 @@ module.exports = {
 						var $ = window.jQuery;
 						$('#'+divID).html(output);
 						self.htmlDocument = window.document.documentElement.innerHTML;
-						self.send(response);
+						if (templateHtml.indexOf('brackets') !== -1) {
+							output = Mustache(self.htmlDocument, obj2);
+						} else {
+							self.send(response);
+						}
             			window.close();
 					}
 				});

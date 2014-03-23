@@ -24,7 +24,7 @@ module.exports = {
 				currentSize: data.currentSize,
 				maxSize: data.maxSize
 			}
-			var output = Mustache.render
+			jsonParsed.push(obj);
 
 			parse.build(jsonParsed, "/Template/template-brackets.html",
 						"template-round", "/html/template-brackets-index.html",
@@ -38,7 +38,6 @@ module.exports = {
 		var temp2 = [];
 		for (var i = 0; i < json.users.length; ++i) {
 			temp2.push(json.users[i].name);
-			console.log(json.users[i].name);
 		}
 		for (var i = 0; i < temp2.length-1; ++i) {
 			temp = {
