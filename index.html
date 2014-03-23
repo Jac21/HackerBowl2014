@@ -23,19 +23,10 @@
 
   <ul class="nav nav-tabs" style="margin-bottom: 15px;">
   <li class="active"><a href="#home" data-toggle="tab">Home</a></li>
-  <li class=""><a href="#profile" data-toggle="tab">Sign-up</a></li>
-  <!-- <li class="disabled"><a>Disabled</a></li> -->
-  <li class="dropdown">
-    <a class="dropdown-toggle" data-toggle="dropdown" href="#">
-      Returning Users <span class="caret"></span>
-    </a>
-    <ul class="dropdown-menu">
-      <li class=""><a href="#dropdown1" data-toggle="tab">Your profile</a></li>
-      <li class="divider"></li>
-      <li><a href="#dropdown2" data-toggle="tab">Your tournaments</a></li>
-    </ul>
-  </li>
+  <li class=""><a href="#profile" data-toggle="tab">Tournament Creation</a></li>
+  <li class=""><a href="./html/Menu.html" data-toggle="tab">Current Tournaments</a></li>
 </ul>
+
 <div id="myTabContent" class="tab-content">
   <div class="tab-pane fade in active" id="home">
     <p></p>
@@ -57,7 +48,7 @@
   <div class="tab-pane fade" id="profile">
   <form class="form-horizontal" action="" method="post">
 
-  <fieldset id="guest-signin">
+  <!-- <fieldset id="guest-signin">
     <div class = "well bs-component">
     <legend>Guest User Sign-up</legend>
     <div class="form-group">
@@ -78,10 +69,17 @@
       </div>
     </div>
     </div>
-  </fieldset>
-  <fieldset id="tck" style="display:none">
+  </fieldset> -->
+
+  <fieldset id="tck">
     <div class = "well bs-component">
     <legend>Tournament Creation Kit</legend>
+    <div class="form-group">
+      <label for="inputName" class="col-lg-2 control-label">Name</label>
+      <div class="col-lg-10">
+        <input type="text" required="true" class="form-control" name="name" placeholder="Enter name here...">
+      </div>
+    </div>
     <div class="form-group">
       <label for="inputIGN" class="col-lg-2 control-label">IGN</label>
       <div class="col-lg-10">
@@ -124,7 +122,7 @@
         <input type="text" required="true" class="form-control" name="time" placeholder="Enter time taking place here...">
       </div>
     </div>
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="inputType" class="col-lg-2 control-label">Tourney Type</label>
       <div class="col-lg-10">
         <input type="text" required="true" class="form-control" name="type" placeholder="Enter type of tourney here...">
@@ -134,6 +132,28 @@
       <label for="inputStyle" class="col-lg-2 control-label">Tourney Style</label>
       <div class="col-lg-10">
         <input type="text" required="true" class="form-control" name="style" placeholder="Enter tourney style here...">
+      </div>
+    </div> -->
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Tourney Type</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios" id="optionsRadios1" value="1v1" checked="true">
+            1v1
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="col-lg-2 control-label">Tourney Style</label>
+      <div class="col-lg-10">
+        <div class="radio">
+          <label>
+            <input type="radio" name="optionsRadios2" id="optionsRadios2" value="elimination" checked="true">
+            Single-Elimination
+          </label>
+        </div>
       </div>
     </div>
     <div class="form-group">
@@ -182,13 +202,6 @@
       }());
     </script>
   </div>
-  <div class="tab-pane fade" id="dropdown1">
-    <p>Test 1.</p>
-  </div>
-  <div class="tab-pane fade" id="dropdown2">
-    <p>Test 2.</p>
-  </div>
-</div>
 
   <!-- Bootstrap core JavaScript
     ================================================== -->
