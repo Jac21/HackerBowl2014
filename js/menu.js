@@ -1,9 +1,10 @@
 var fs = require('fs'),
 	parse = require('./parse.js');
-	walkPath = './../Tournaments/';
+	walkPath = './Tournaments';
 module.exports = {
 	build: function(response) 
 	{
+		var self = this;
 		var walk = function (dir, done) 
 		{
 		    fs.readdir(dir, function (error, list) 
@@ -37,8 +38,12 @@ module.exports = {
 		                    });
 		                } else {
 		                    // do stuff to file here
-		                     obj = JSON.parse(file);
-		                     parsed.push(parseData());
+					try {
+		                     		self.obj = JSON.parse(file);
+					} catch (e) {
+						self.obj = eval("("+file+")"); 
+					}
+		                     self.parsed.push(parseData());
 		                    console.log(file);
 		                    next();
 		                }
@@ -66,7 +71,7 @@ module.exports = {
 		    }
 		});
 		// parse json
-		parse.build(parsed, '/Template/template-tabled.html', 'template-td', '/html/template-menu-index.html', 'games', response);
+		parse.build(this.parsed, '/Template/template-tabled.html', 'template-td', '/html/template-menu-index.html', 'games', response);
 
 	},
 	parseData: function() 
