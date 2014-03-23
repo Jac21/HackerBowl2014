@@ -16,6 +16,15 @@ module.exports = {
 			}
 			console.log(data);
 			var jsonParsed = self.parseData(data);
+			var obj = {
+				title: data.id + "Tournament",
+				summary: data.summary,
+				game: data.game,
+				type: "Elimination",
+				currentSize: data.currentSize,
+				maxSize: data.maxSize
+			}
+			var output = Mustache.render
 
 			parse.build(jsonParsed, "/Template/template-brackets.html",
 						"template-round", "/html/template-brackets-index.html",
@@ -27,14 +36,14 @@ module.exports = {
 		var data = [];
 		var temp = {};
 		var temp2 = [];
-		for (var a in json["users"]) {
-			temp2.push(json["users"].a.name);
-			console.log(json["users"].a);
+		for (var i = 0; i < json.users.length; ++i) {
+			temp2.push(json.users[i].name);
+			console.log(json.users[i].name);
 		}
 		for (var i = 0; i < temp2.length-1; ++i) {
 			temp = {
 				"round": i+1,
-				"users": temp2[i]["name"] + ' versus ' + temp2[i+1]["name"] + '\n'
+				"users": temp2[i] + ' versus ' + temp2[i+1] + '\n'
 			}
 			data.push(temp);
 		}
