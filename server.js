@@ -59,27 +59,95 @@ http.createServer(function (req, res) {
         }
     } else if (req.method === 'POST') {
         var queryData = "";
-        request.on('data', function(data) {
+        req.on('data', function(data) {
             queryData += data;
             if(queryData.length > 1e6) {
                 queryData = "";
-                response.writeHead(413, {'Content-Type': 'text/plain'}).end();
-                request.connection.destroy();
+                res.writeHead(413, {'Content-Type': 'text/plain'});
+                res.end();
+                req.connection.destroy();
             }
         });
-        request.on('end', function() {
-            var POST = qs.parse(body);
-            console.log(POST);
-            parseJS(POST);
+        req.on('end', function() {
+            if (queryData === undefined) {
+                res.writeHead(400, {'Content-Type': 'text/plain'});
+                res.end();
+            } else {
+                var POST = qs.parse(queryData);
+                var filename = Math.floor(Math.random()*10000) + '.json';
+                POST = parseJS(POST, filename);
+                fs.stat(filename, function(err, stat) {
+                    if (err) {
+                        fs.writeFile("./tournaments/"+filename, JSON.stringify(POST), function(err) {
+                            if (err) throw err;
+                            res.writeHead(200, {'Content-Type': 'text/html'});
+                            console.log('Client called: ' + req.url);
+                            menu.build(req, res);
+                        });
+                    } else {
+                        filename = Math.floor(Math.random()*10000) + '.json';
+                        fs.writeFile("./tournaments/"+filename, JSON.stringify(POST), function(err) {
+                            if (err) throw err;
+                            res.writeHead(200, {'Content-Type': 'text/html'});
+                            console.log('Client called: ' + req.url);
+                            menu.build(req, res);
+                        });
+                    }
+                });             
+            }
         });
     }
 }).listen(80);
 
 console.log('Server running at http://127.0.0.1:80/');
 
-function parseJS(data) {
-    var filename = data.id + json;
-    fs.writeFile("./tournaments/"+filename, JSON.stringify(data), function(err) { 
-        if (err) throw err;
-    });
+function parseJS(data, id) {
+    var a = {
+        "id": id,
+        "host": {
+            "id": 0,
+            "name": null,
+            "IGN": data.IGN
+        },
+        "info": {
+            "title": data.Title,
+            "summary": data.summary,
+            "status": data.status,
+            "game": data.same,
+            "location": data.location,
+            "time": data.time,
+            "type": data.type,
+            "style": data.style,
+            "cost": data.cost,
+            "total-pot": null,
+            "current-split": null,
+            "current-size": 1,
+            "max-size": data.maxSize,
+            "rounds": null,
+        },
+        "users": [
+            {
+            "id": 0,
+            "name": null,
+            "IGN": data.IGN
+            }
+        ],
+        "bracket": {
+            "rounds": {
+                "round1": [
+                    "user1",
+                    "user2"
+                ],
+                "round2": [
+                    "user3",
+                    "user4"
+                ],
+                "round3": [
+                    "user2",
+                    "user4"
+                ]
+            }
+        }
+        
+    }
 }
