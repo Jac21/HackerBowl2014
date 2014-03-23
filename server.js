@@ -75,8 +75,9 @@ http.createServer(function (req, res) {
                 res.end();
             } else {
                 var POST = qs.parse(queryData);
-                var filename = Math.floor(Math.random()*10000) + '.json';
+                var filename = Math.floor(Math.random()*10000);
                 POST = parseJS(POST, filename);
+                filename += '.json';
                 if (POST !== undefined) {
                     fs.stat(filename, function(err, stat) {
                         if (err) {

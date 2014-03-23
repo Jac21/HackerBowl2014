@@ -14,15 +14,14 @@ module.exports = {
 				console.log("JSON.parse failed, resorting to eval.");
 				data = eval( "(" + data + ")" );
 			}
-			console.log(data);
 			var jsonParsed = self.parseData(data);
 			var obj = {
-				title: data.id + "Tournament",
-				summary: data.summary,
-				game: data.game,
+				title: data.id + " Tournament",
+				summary: data.info.summary,
+				game: data.info.game,
 				type: "Elimination",
-				currentSize: data.currentSize,
-				maxSize: data.maxSize
+				currentSize: data.info.currentSize,
+				maxSize: data.info.maxSize
 			}
 			jsonParsed.push(obj);
 
@@ -36,7 +35,7 @@ module.exports = {
 		var data = [];
 		var temp = {};
 		var temp2 = [];
-		for (var i = 0; i < json.users.length; ++i) {
+		for (var i = 0; i < Object.keys(json.users).length; ++i) {
 			temp2.push(json.users[i].name);
 		}
 		for (var i = 0; i < temp2.length-1; ++i) {

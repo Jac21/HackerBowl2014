@@ -3,11 +3,12 @@ var Mustache = require('mustache'),
 
 module.exports = {
 	build: function(obj, templateHtml, templateID, html, divID, response) {
-		var obj2 = {};
-		if (obj[obj.length-1].length == 6) {
-			obj2 = obj[obj.length-1];
-			delete obj[obj.length-1];
+		var obj2 = {}; 
+		if (Object.keys(obj.pop()).length > 4) {
+			obj2 = obj.pop();
+			delete obj.pop();
 		}
+		
 		var self = this;
 		jsdom.env({  
 			url: 'http://localhost' + templateHtml,
@@ -18,7 +19,7 @@ module.exports = {
 		 		var $ = window.jQuery;
 				self.template = $('#'+templateID).html();
 				var output = '';
-				for (var i = 0; i < obj.length; ++i) {
+				for (var i = 0; i < Object.keys(obj).length; ++i) {
 					output += Mustache.render(self.template, obj[i]);
 				}
 				window.close();
@@ -29,13 +30,16 @@ module.exports = {
 					],
 					done: function (err, window) {
 						var $ = window.jQuery;
-						$('#'+divID).html(output);
-						self.htmlDocument = window.document.documentElement.innerHTML;
+						var a = window.document.documentElement.innerHTML;
 						if (templateHtml.indexOf('brackets') !== -1) {
-							output = Mustache.render(self.htmlDocument, obj2);
-							self.htmlDocument = output;
+							var out = Mustache.render(a, obj2);
+							window.document.documentElement.innerHTML = out;
+							$('#'+divID).html(output);
+							self.htmlDocument = window.document.documentElement.innerHTML;
 							self.send(response);
 						} else {
+							$('#'+divID).html(output);
+							self.htmlDocument = window.document.documentElement.innerHTML;
 							self.send(response);
 						}
             			window.close();

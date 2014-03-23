@@ -6,14 +6,20 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
         <meta name="description" content="">
         <meta name="author" content="">    
-        <title>{{bracket-num}}</title>
+        <title>{{title}}</title>
         <link href="css/bootstrap.min.css" rel="stylesheet">
     </head>
     <body>
         <div class="container">
         <div class="row">
             <div class="col-xs-6">
-            <h4>
+                <h2>{{title}}</h2>
+                <h3>Game : {{game}}</h3>
+                <p>Information : {{Summary}}</p>
+            </div>
+            <div class="col-xs-6">
+            <h3>Type: {{type}}</h3>
+            <h3>Remaining slots: {{currentSize}}/{{maxSize}}</h3>
             </div>
         </div>
         <div id="bracket" class="row"></div>
