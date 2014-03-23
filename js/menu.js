@@ -2,7 +2,7 @@ var fs = require('fs'),
 	parse = require('./parse.js');
 	walkPath = './tournaments';
 module.exports = {
-	build: function(response) 
+	build: function(request, response) 
 	{
 		var self = this;
 		var walk = function (dir, done) 
@@ -23,29 +23,22 @@ module.exports = {
 		            }
 		            
 		            file = dir + '/' + file;
-		            console.log("("+file+")");
-			    debugger;
 		                    // do stuff to file here
-					console.log("its going to check the file");
-					data = fs.readFileSync(file, 'utf8');
-						try {
-				             		self.obj = JSON.parse(data);
-							 console.log(self.obj);
-						} catch (e) {
-							 console.log(self.obj);
-							 console.log("Y is the dot bad");
-							self.obj = eval("("+data+")"); 
-	 						console.log("well its nt here");
-							return done(null);
-						}
-					        console.log("+data+");
- 						self.parsed.push(self.parseData());
-		                    		console.log(self.parsed);
-		                    		next();
 					
-		                    
-		                
-		            
+			data = fs.readFileSync(file, 'utf8');
+				try {
+		             		self.obj = JSON.parse(data);
+				
+				} catch (e) {
+					
+					self.obj = eval("("+data+")"); 
+					
+					return done(null);
+				}
+			       
+				self.parsed.push(self.parseData());
+                    		next();
+		       
 		        })();
 		    }
 		};
@@ -59,7 +52,6 @@ module.exports = {
 		{
 		    if (error) 
 		    {
-			console.log("Error y");
 		        throw error;
 		    } 
 		    else 
@@ -67,11 +59,16 @@ module.exports = {
 		        console.log('-------------------------------------------------------------');
 		        console.log('finished.');
 		        console.log('-------------------------------------------------------------');
+self.parsed.push({});
+console.log(self.parsed)
+parse.build(self.parsed, '/Template/template-tabled.html', 'templatetd', '/html/template-menu-index.html', 'games', response);
 		    }
 		});
 		// parse json
-		console.log(self.parsed);
-		parse.build(this.parsed, '/Template/template-tabled.html', 'template-td', '/html/template-menu-index.html', 'games', response);
+		
+		
+		//console.log(self.parsed)
+		
 
 	},
 	parseData: function() 
@@ -79,7 +76,7 @@ module.exports = {
 		return {
 		"title": this.obj['info']['title'],
 		"status": this.obj['info']['status'],
-		 "game": this.obj['info']['game'],
+		"game": this.obj['info']['game'],
 		"type": this.obj['info']['type'],
 		"currentSize": this.obj['info']['currentSize'],
 		"time": this.obj['info']['time']
