@@ -3,12 +3,8 @@ var Mustache = require('mustache'),
 
 module.exports = {
 	build: function(obj, templateHtml, templateID, html, divID, response) {
-		var obj2 = {}; 
-		if (Object.keys(obj.pop()).length > 4) {
-			obj2 = obj.pop();
-			delete obj.pop();
-		}
-		
+		var obj2 = obj.pop();
+		var output = '';
 		var self = this;
 		jsdom.env({  
 			url: 'http://localhost' + templateHtml,
@@ -18,8 +14,7 @@ module.exports = {
 		 	done: function (err, window) {
 		 		var $ = window.jQuery;
 				self.template = $('#'+templateID).html();
-				var output = '';
-				for (var i = 0; i < Object.keys(obj).length; ++i) {
+				for (var i = 0; i < obj.length; i++) {
 					output += Mustache.render(self.template, obj[i]);
 				}
 				window.close();

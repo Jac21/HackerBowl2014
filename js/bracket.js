@@ -24,7 +24,6 @@ module.exports = {
 				maxSize: data.info.maxSize
 			}
 			jsonParsed.push(obj);
-
 			parse.build(jsonParsed, "/Template/template-brackets.html",
 						"template-round", "/html/template-brackets-index.html",
 						"bracket", response);
@@ -35,15 +34,20 @@ module.exports = {
 		var data = [];
 		var temp = {};
 		var temp2 = [];
-		for (var i = 0; i < Object.keys(json.users).length; ++i) {
-			temp2.push(json.users[i].name);
+		for (var i = 0; i < json.info.maxSize; i++) {
+			if (json.users.length > i)
+				temp2.push(json.users[i].name);
+			else
+				temp2.push("_________________");
 		}
-		for (var i = 0; i < temp2.length-1; ++i) {
-			temp = {
-				"round": i+1,
-				"users": temp2[i] + ' versus ' + temp2[i+1] + '\n'
+		if (temp2.length % 2 == 0) {
+			for (var i = 0; i < temp2.length; i+=2) {
+				temp = {
+					"round": i+1,
+					"users": temp2[i] + ' versus ' + temp2[i+1] + '\n'
+				}
+				data.push(temp);
 			}
-			data.push(temp);
 		}
 		return data;
 	}
