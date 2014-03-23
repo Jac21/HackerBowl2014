@@ -66,7 +66,7 @@ module.exports = {
 		    }
 		});
 		// parse json
-		 send parse.build(parsed, '/Template/template-tabled.html', 'template-td', '/html/template-menu-index.html', 'games', response);
+		parse.build(parsed, '/Template/template-tabled.html', 'template-td', '/html/template-menu-index.html', 'games', response);
 
 	},
 	parseData: function() 
