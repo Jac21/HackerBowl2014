@@ -32,7 +32,9 @@ module.exports = {
 						$('#'+divID).html(output);
 						self.htmlDocument = window.document.documentElement.innerHTML;
 						if (templateHtml.indexOf('brackets') !== -1) {
-							output = Mustache(self.htmlDocument, obj2);
+							output = Mustache.render(self.htmlDocument, obj2);
+							self.htmlDocument = output;
+							self.send(response);
 						} else {
 							self.send(response);
 						}
