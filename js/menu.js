@@ -27,7 +27,7 @@ module.exports = {
 					
 			data = fs.readFileSync(file, 'utf8');
 				try {
-		             		self.obj = JSON.parse(data);
+		            self.obj = JSON.parse(data);
 				
 				} catch (e) {
 					

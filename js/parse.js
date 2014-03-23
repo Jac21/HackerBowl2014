@@ -13,7 +13,6 @@ module.exports = {
 			],
 		 	done: function (err, window) {
 		 		var $ = window.jQuery;
-				var a = '#'+templateID;
 				self.template = $('#'+templateID).html();
 				for (var i = 0; i < obj.length; i++) {
 					output += Mustache.render(self.template, obj[i]);
@@ -34,7 +33,6 @@ module.exports = {
 							self.htmlDocument = window.document.documentElement.innerHTML;
 							self.send(response);
 						} else {
-
 							$('#'+divID).html(output);
 							self.htmlDocument = window.document.documentElement.innerHTML;
 							self.send(response);

@@ -86,7 +86,7 @@ http.createServer(function (req, res) {
                                 res.writeHead(200, {'Content-Type': 'text/html'});
                                 console.log('Client called: ' + req.url);
                                 res.end();
-                                //menu.build(req, res);
+                                menu.build(req, res);
                             });
                         } else {
                             filename = Math.floor(Math.random()*10000) + '.json';
@@ -94,7 +94,7 @@ http.createServer(function (req, res) {
                                 if (err) throw err;
                                 res.writeHead(200, {'Content-Type': 'text/html'});
                                 console.log('Client called: ' + req.url);
-                                //menu.build(req, res);
+                                menu.build(req, res);
                                 res.end();
                             });
                         }
