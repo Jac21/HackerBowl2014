@@ -4,7 +4,7 @@ var bracket = require('./js/bracket.js');
 var menu = require('./js/menu.js');
 
 http.createServer(function (req, res) {
-	if (req.url.indexOf('bracket', req.url) !== -1) {     // bracket
+	if (req.url.indexOf('.bracket', req.url) !== -1) {     // bracket
         res.writeHead(200, {'Content-Type': 'text/html'});
         console.log('Client called: ' + req.url);
         bracket.build(req, res);
@@ -48,7 +48,7 @@ http.createServer(function (req, res) {
             res.write(data);
             res.end();
         });
-    } else if (req.url.indexOf('Menu.html', req.url) !== -1) {     // menu.html
+    } else if (req.url.indexOf('Menu', req.url) !== -1) {     // menu.html
         res.writeHead(200, {'Content-Type': 'text/html'});
         console.log('Client called: ' + req.url);
         menu.build(req, res);
