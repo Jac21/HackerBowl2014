@@ -16,6 +16,9 @@ module.exports = {
 	            "IGN": user.IGN
 			}
 			data.users.push(newUser);
+			data.brackets.rounds.push(newUser);
+			data.info.rounds = data.brackets.rounds.length;
+			data.info.currentSize = data.users.length;
 			fs.writeFile("./tournaments/"+filename, JSON.stringify(POST), function(err) {
 				if (err) throw err;
 				console.log("wrote new user: " + user.name + " to " + filename);

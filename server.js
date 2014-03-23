@@ -77,24 +77,28 @@ http.createServer(function (req, res) {
                 var POST = qs.parse(queryData);
                 var filename = Math.floor(Math.random()*10000) + '.json';
                 POST = parseJS(POST, filename);
-                fs.stat(filename, function(err, stat) {
-                    if (err) {
-                        fs.writeFile("./tournaments/"+filename, JSON.stringify(POST), function(err) {
-                            if (err) throw err;
-                            res.writeHead(200, {'Content-Type': 'text/html'});
-                            console.log('Client called: ' + req.url);
-                            menu.build(req, res);
-                        });
-                    } else {
-                        filename = Math.floor(Math.random()*10000) + '.json';
-                        fs.writeFile("./tournaments/"+filename, JSON.stringify(POST), function(err) {
-                            if (err) throw err;
-                            res.writeHead(200, {'Content-Type': 'text/html'});
-                            console.log('Client called: ' + req.url);
-                            menu.build(req, res);
-                        });
-                    }
-                });             
+                if (POST !== undefined) {
+                    fs.stat(filename, function(err, stat) {
+                        if (err) {
+                            fs.writeFile("./tournaments/"+filename, JSON.stringify(POST), function(err) {
+                                if (err) throw err;
+                                res.writeHead(200, {'Content-Type': 'text/html'});
+                                console.log('Client called: ' + req.url);
+                                res.end();
+                                //menu.build(req, res);
+                            });
+                        } else {
+                            filename = Math.floor(Math.random()*10000) + '.json';
+                            fs.writeFile("./tournaments/"+filename, JSON.stringify(POST), function(err) {
+                                if (err) throw err;
+                                res.writeHead(200, {'Content-Type': 'text/html'});
+                                console.log('Client called: ' + req.url);
+                                //menu.build(req, res);
+                                res.end();
+                            });
+                        }
+                    });
+                }            
             }
         });
     }
@@ -140,6 +144,7 @@ function parseJS(data, id) {
                 "rounds": []
             }
         }
-        a.bracket.rounds.push(users[0]);
+        a.bracket.rounds.push(a.users[0]);
+        return a;
     }
 }
