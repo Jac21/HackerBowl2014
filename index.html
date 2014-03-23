@@ -9,7 +9,7 @@
     <title>UTourney</title>
    <link href="css/bootstrap.min.css" rel="stylesheet">
    <!-- <link rel="stylesheet" href="//netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"> -->
-   
+   </head>
    <body>
 
    <div class="container">  
@@ -47,11 +47,11 @@
   <p></p>
   <div class="alert alert-dismissable alert-info">
   <button type="button" class="close" data-dismiss="alert">×</button>
-    <a href="#" class="alert-link">Host your own personalized tournaments [insert tourney creation page link here]</a>, and have your brackets made for you on the fly.
+    <a href="./html/Menu.html" class="alert-link">Host your own personalized tournaments</a>, and have your brackets made for you on the fly.
 </div>
 <div class="alert alert-dismissable alert-danger">
   <button type="button" class="close" data-dismiss="alert">×</button>
-   <a href="#" class="alert-link">Manage your event from your device of choice [insert admin page link here]</a>, right down to the individual participant.
+   <a href="./html/template-brackets-index.html" class="alert-link">Manage your event from your device of choice</a>, right down to the individual participant.
 </div>
 <div class="alert alert-dismissable alert-success">
   <button type="button" class="close" data-dismiss="alert">×</button>
@@ -60,28 +60,117 @@
 </div>
   </div>
   <div class="tab-pane fade active in" id="profile">
-    <form class="form-horizontal">
-  <fieldset>
+  <form class="form-horizontal">
+
+  <fieldset id="guest-signin">
     <div class = "well bs-component">
     <legend>Guest User Sign-up</legend>
     <div class="form-group">
-      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
+      <label for="inputUsername" class="col-lg-2 control-label">Username</label>
       <div class="col-lg-10">
-        <input type="text" class="form-control" id="inputEmail" placeholder="Email">
+        <input type="text" class="form-control" id="inputUsername" placeholder="Enter guest username of choice here...">
       </div>
     </div>
     <div class="form-group">
-      <label for="inputPassword" class="col-lg-2 control-label">Password</label>
+      <label for="inputEmail" class="col-lg-2 control-label">Email</label>
       <div class="col-lg-10">
-        <input type="password" class="form-control" id="inputPassword" placeholder="Password">
+        <input type="text" class="form-control" id="inputEmail" placeholder="Enter email here...">
       </div>
     </div>
     <div class="form-group">
       <div class="col-lg-10 col-lg-offset-2">
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button id="submit"type="submit" class="btn btn-primary"><a href="#submit">Submit</a></button>
       </div>
     </div>
   </fieldset>
+  <fieldset id="tck" style="display:none">
+    <div class = "well bs-component">
+    <legend>Tournament Creation Kit</legend>
+    <div class="form-group">
+      <label for="inputIGN" class="col-lg-2 control-label">IGN</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputIGN" placeholder="Enter IGN of choice here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTitle" class="col-lg-2 control-label">Tourney Title</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputTitle" placeholder="Enter tourney title of choice here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputSummary" class="col-lg-2 control-label">Summary</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputSummary" placeholder="Enter summary here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputStatus" class="col-lg-2 control-label">Status</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputStatus" placeholder="Enter status of tourney here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputGame" class="col-lg-2 control-label">Game Title</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputGame" placeholder="Enter game of choice here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputLocation" class="col-lg-2 control-label">Location</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputLocation" placeholder="Enter location of choice here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTime" class="col-lg-2 control-label">Time</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputTime" placeholder="Enter time taking place here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputType" class="col-lg-2 control-label">Tourney Type</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputType" placeholder="Enter type of tourney here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputStyle" class="col-lg-2 control-label">Tourney Style</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputStyle" placeholder="Enter tourney style here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCost" class="col-lg-2 control-label">Cost</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputCost" placeholder="Enter cost to enter here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputTotalPot" class="col-lg-2 control-label">Total Pot</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputTotalPot" placeholder="Enter total cash pot here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputCurrentSplit" class="col-lg-2 control-label">Current Split</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputCurrentSplit" placeholder="Enter current split here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <label for="inputMaxSize" class="col-lg-2 control-label">Max Size</label>
+      <div class="col-lg-10">
+        <input type="text" class="form-control" id="inputMaxSize" placeholder="Enter max size here...">
+      </div>
+    </div>
+    <div class="form-group">
+      <div class="col-lg-10 col-lg-offset-2">
+        <button type="submit" class="btn btn-primary"><a href = "./html/TourneyForm.html">Submit</a></button>
+      </div>
+    </div>
+  </fieldset>
+
 </form>
     <fb:login-button></fb:login-button>
           <div id="fb-root"></div>
@@ -121,5 +210,11 @@
     <!-- Placed at the end of the document so the pages load faster -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.0/jquery.min.js"></script>
     <script src="js/bootstrap.min.js"></script>
+    <script>
+      $("#submit").on("click", function() {
+        $("#guest-signin").hide();
+        $("#tck").show();
+      })
+    </script>
   </body>
 </html>
