@@ -2,12 +2,12 @@ var fs = require('fs'),
 	parse = require('./parse.js');
 
 module.exports = {
-	build: function(request, response) {
+	build: function(response) {
 		// open correct json
 		// parse json
-		// send parse.build(obj, num, templateHtml, templateID, html, divID, response)
+		// send parse.build(obj, templateHtml, templateID, html, divID, response)
 
-		parse.build([{"round": 1, "names": "name!"}], "/Template/template-brackets.html", "template-round", "/html/template-brackets-index.html", "bracket", response);
+		parse.build({"round": 1, "names": "name!"}, "/Template/template-brackets.html", "template-round", "/index.html", "bracket", response);
 		
 	},
 	parseData: function() {
