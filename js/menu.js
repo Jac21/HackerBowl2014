@@ -1,5 +1,5 @@
 var fs = require('fs'),
-	parse = require('./js/parse.js');
+	parse = require('./parse.js');
 
 module.exports = {
 	build: function(response) {
@@ -7,12 +7,14 @@ module.exports = {
 		// parse json
 		// send parse.build(obj, templateHtml, templateID, html, divID, response)
 
-		parseData: function() {
-			this.parsed['users'] = this.data['rounds'][round];
-			this.parsed['rounds'] = round;
-			for (var a in this.parsed['users']) {
-				a = '<div class="col-md-6 col-xs-12">' + a + '</div>';
-			}
-		}
-	}
+	},
+	parseData: function() {
+		var title =this.obj['users'];
+		var status =this.parsed['users'];
+		var game =this.parsed['users'];
+		var type =this.parsed['users'];
+		
+	},
+	obj: {},
+	parsed: {}
 }
