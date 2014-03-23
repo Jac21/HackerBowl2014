@@ -84,7 +84,6 @@ http.createServer(function (req, res) {
                             fs.writeFile("./tournaments/"+filename, JSON.stringify(POST), function(err) {
                                 if (err) throw err;
                                 res.writeHead(200, {'Content-Type': 'text/html'});
-                                console.log('Client called: ' + req.url);
                                 menu.build(req, res);
                                 res.end();
                             });
@@ -93,7 +92,6 @@ http.createServer(function (req, res) {
                             fs.writeFile("./tournaments/"+filename, JSON.stringify(POST), function(err) {
                                 if (err) throw err;
                                 res.writeHead(200, {'Content-Type': 'text/html'});
-                                console.log('Client called: ' + req.url);
                                 menu.build(req, res);
                                 res.end();
                             });

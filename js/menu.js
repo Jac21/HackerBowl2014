@@ -5,6 +5,7 @@ module.exports = {
 	build: function(request, response) 
 	{
 		var self = this;
+		self.parsed = [];
 		var walk = function (dir, done) 
 		{
 			console.log("HI:D");
