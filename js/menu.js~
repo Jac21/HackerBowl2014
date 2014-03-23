@@ -38,14 +38,23 @@ module.exports = {
 		                    });
 		                } else {
 		                    // do stuff to file here
-					try {
-		                     		self.obj = JSON.parse(file);
-					} catch (e) {
-						self.obj = eval("("+file+")"); 
-					}
-		                     self.parsed.push(parseData());
-		                    console.log(file);
-		                    next();
+					fs.readFile(file, function(err, data) 
+					{
+						if(err) return done(null);
+						try {
+				             		self.obj = JSON.parse(data);
+							 console.log(self.obj);
+						} catch (e) {
+							 console.log(self.obj);
+							 console.log("Y is the dot bad");
+							self.obj = eval("("+data+")"); 
+	 						console.log("well its nt here");
+						}
+ 						self.parsed.push(self.parseData());
+		                    		console.log(self.parsed);
+		                    		next();
+					});
+		                    
 		                }
 		            });
 		        })();
