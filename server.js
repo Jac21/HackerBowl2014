@@ -7,7 +7,7 @@ var http = require('http'),
 
 http.createServer(function (req, res) {
     if (req.method === 'GET') {
-    	if (req.url.indexOf('.bracket') !== -1) {     // bracket
+    	if (req.url.indexOf('.bracket') !== -1) {                      // bracket
             res.writeHead(200, {'Content-Type': 'text/html'});
             console.log('Client called: ' + req.url);
             bracket.build(req, res);
@@ -19,7 +19,7 @@ http.createServer(function (req, res) {
                 res.write(html);
                 res.end();
             });
-        } else if (req.url.indexOf('template') !== -1) {      // templates
+        } else if (req.url.indexOf('template') !== -1) {               // templates
             res.writeHead(200, {'Content-Type': 'text/html'});
             fs.readFile('.'+req.url, function(err, template) {
                 console.log('Client called: ' + req.url);
@@ -27,7 +27,7 @@ http.createServer(function (req, res) {
                 res.write(template);
                 res.end();
             });
-        } else if (req.url.indexOf('js') !== -1) {       // js
+        } else if (req.url.indexOf('js') !== -1) {                      // js
             res.writeHead(200, {'Content-Type': 'text/plain'});
             fs.readFile('.'+req.url, function(err, data) {
                 console.log('Client called: ' + req.url);
@@ -35,7 +35,7 @@ http.createServer(function (req, res) {
                 res.write(data);
                 res.end();
             });
-        } else if (req.url.indexOf('/css/') !== -1) {       // css
+        } else if (req.url.indexOf('/css/') !== -1) {                   // css
             res.writeHead(200, {'Content-Type': 'text/css'});
             fs.readFile('.'+req.url, function(err, data) {
                 console.log('Client called: ' + req.url);
@@ -43,7 +43,7 @@ http.createServer(function (req, res) {
                 res.write(data);
                 res.end();
             });
-        } else if (req.url.indexOf('.json') !== -1) {      // json
+        } else if (req.url.indexOf('.json') !== -1) {                   // json
             res.writeHead(200, {'Content-Type': 'text/json'});
             console.log('Client called: ' + req.url);
             fs.readFile('.'+req.url, function(err, data) {
@@ -51,14 +51,14 @@ http.createServer(function (req, res) {
                 res.write(data);
                 res.end();
             });
-        } else if (req.url.indexOf('Menu') !== -1) {     // menu.html
+        } else if (req.url.indexOf('Menu') !== -1) {                    // menu.html
             res.writeHead(200, {'Content-Type': 'text/html'});
             console.log('Client called: ' + req.url);
             menu.build(req, res);
         } else {
-            console.log('Failed call: ' + req.url);     // fail safe
+            console.log('Failed call: ' + req.url);                     // fail safe
         }
-    } else if (req.method === 'POST') {         // POST for JSON
+    } else if (req.method === 'POST') {                                 // POST for JSON
         var queryData = "";
         req.on('data', function(data) {
             queryData += data;

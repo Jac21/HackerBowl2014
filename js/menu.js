@@ -65,12 +65,6 @@ console.log(self.parsed)
 parse.build(self.parsed, '/Template/template-tabled.html', 'templatetd', '/html/template-menu-index.html', 'games', response);
 		    }
 		});
-		// parse json
-		
-		
-		//console.log(self.parsed)
-		
-
 	},
 	parseData: function() 
 	{

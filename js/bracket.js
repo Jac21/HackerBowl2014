@@ -14,6 +14,7 @@ module.exports = {
 				console.log("JSON.parse failed, resorting to eval.");
 				data = eval( "(" + data + ")" );
 			}
+
 			var jsonParsed = self.parseData(data);
 			var obj = {
 				title: data.id + " Tournament",
@@ -23,6 +24,7 @@ module.exports = {
 				currentSize: data.info.currentSize,
 				maxSize: data.info.maxSize
 			}
+			
 			jsonParsed.push(obj);
 			parse.build(jsonParsed, "/Template/template-brackets.html",
 						"template-round", "/html/template-brackets-index.html",
